@@ -1,24 +1,64 @@
-# README
+# データベース設計
+___
+## users テーブル
+| Column             | Type   | Options     |
+| ------------------ | ------ | ----------- |
+| email              | string | null: false |
+| encrypted_password | string | null: false |
+| nickname           | string | null: false |
+| family_name        | string | null: false |
+| last_name          | string | null: false |
+| family_name_kana   | string | null: false |
+| last_name_kana     | string | null: false |
+| birthday           | date   | null: false |
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Association
+- has_many :items
+- has_many :orders
 
-Things you may want to cover:
+___
+## items テーブル
+| Column             | Type       | Options     |
+| ------------------ | ---------- | ----------- |
+| name               | string     | null: false |
+| image              | text       | null: false |
+| category           | string     | null: false |
+| condition          | string     | null: false |
+| price              | integer    | null: false |
+| delivery_fee       | integer    | null: false |
+| delivery_fee_payer | string     | null: false |
+| area               | string     | null: false |
+| days_to_ship       | string     | null: false |
+| user_id            | references | null: false, foreign_key: true |
 
-* Ruby version
+### Association
+- belongs_to :user
+- has_one    :order
 
-* System dependencies
+___
+## orders テーブル
+| Column  | Type       | Options                        |
+| ------- | ---------- | ------------------------------ |
+| item_id | references | null: false, foreign_key: true |
+| user_id | references | null: false, foreign_key: true |
 
-* Configuration
+### Association
+- belongs_to :item_id
+- belongs_to :user_id
+- has_one    :shipping_address
 
-* Database creation
+___
+## shipping_addresses テーブル 
+| Column        | Type       | Options                        |
+| ------------- | ---------- | ------------------------------ |
+| code          | integer    | null: false                    |
+| prefecture    | string     | null: false                    |
+| city          | string     | null: false                    |
+| address_1     | string     | null: false                    |
+| address_2     | string     |                                |
+| tel           | integer    | null: false                    |
+| order_id      | references | null: false, foreign_key: true |
 
-* Database initialization
+### Association
+- belongs_to :order
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
