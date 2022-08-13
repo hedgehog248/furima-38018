@@ -50,7 +50,7 @@ ___
 ## shipping_addresses テーブル 
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
-| code          | integer    | null: false                    |
+| postal_code   | string     | null: false                    |
 | prefecture    | string     | null: false                    |
 | city          | string     | null: false                    |
 | address_1     | string     | null: false                    |
