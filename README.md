@@ -56,7 +56,7 @@ ___
 | address_1     | string     | null: false                    |
 | address_2     | string     |                                |
 | tel           | string     | null: false                    |
-| order_id      | references | null: false, foreign_key: true |
+| order         | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :order
