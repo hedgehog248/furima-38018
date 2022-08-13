@@ -28,7 +28,7 @@ ___
 | delivery_fee_payer_id | integer    | null: false |
 | area_id               | integer    | null: false |
 | days_to_ship_id       | integer    | null: false |
-| user_id               | references | null: false, foreign_key: true |
+| user　　               | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
