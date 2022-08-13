@@ -21,7 +21,6 @@ ___
 | Column             | Type       | Options     |
 | ------------------ | ---------- | ----------- |
 | name               | string     | null: false |
-| image              | text       | null: false |
 | category           | string     | null: false |
 | condition          | string     | null: false |
 | price              | integer    | null: false |
