@@ -53,8 +53,8 @@ ___
 | postal_code   | string     | null: false                    |
 | area_id       | integer    | null: false                    |
 | city          | string     | null: false                    |
-| address_1     | string     | null: false                    |
-| address_2     | string     |                                |
+| address       | string     | null: false                    |
+| building      | string     |                                |
 | tel           | string     | null: false                    |
 | order         | references | null: false, foreign_key: true |
 
