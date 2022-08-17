@@ -21,10 +21,10 @@ ___
 | Column                | Type       | Options     |
 | --------------------- | ---------- | ----------- |
 | name                  | string     | null: false |
+| explanation           | text       | null: false |
 | category_id           | integer    | null: false |
 | condition_id          | integer    | null: false |
 | price                 | integer    | null: false |
-| delivery_fee          | integer    | null: false |
 | delivery_fee_payer_id | integer    | null: false |
 | area_id               | integer    | null: false |
 | days_to_ship_id       | integer    | null: false |
