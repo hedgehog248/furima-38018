@@ -7,4 +7,9 @@ class ItemsController < ApplicationController
 
   def create
   end
+
+  pivate
+  def items_params
+    params.require(:item).permit(:image)
+  end
 end
