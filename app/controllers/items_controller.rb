@@ -23,7 +23,9 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    redirect_to root_path unless current_user.id == @item.user_id
+    if current_user.id != @item.user_id || !@item.order.nil? # 自身が出品したものでない、または販売中でない場合に処理を実行
+      redirect_to root_path
+    end
   end
 
   def update
