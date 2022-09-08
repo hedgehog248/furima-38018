@@ -1,3 +1,3 @@
 class ShippingAddress < ApplicationRecord
-  belongs_to :oeder
+  belongs_to :order
 end
