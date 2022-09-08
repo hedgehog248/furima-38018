@@ -3,7 +3,9 @@ class OrdersController < ApplicationController
   before_action :set_item
   
   def index
-    redirect_to root_path if current_user.id == @item.user_id
+    if current_user.id == @item.user_id || !@item.order.nil? # 自身が出品したもの、または売却済みの場合に処理を実行
+      redirect_to root_path
+    end
     @order_shipping_address = OrderShippingAddress.new
   end
 
