@@ -3,6 +3,7 @@ class OrdersController < ApplicationController
   before_action :set_item
   
   def index
+    redirect_to root_path if current_user.id == @item.user_id
     @order_shipping_address = OrderShippingAddress.new
   end
 
