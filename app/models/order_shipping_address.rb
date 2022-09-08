@@ -14,7 +14,6 @@ class OrderShippingAddress
   validates :area_id, numericality: {other_than: 1, message: "can't be blank"}
 
   def save
-    binding.pry
     order = Order.create(item_id: item_id, user_id: user_id)
     ShippingAddress.create(postal_code: postal_code, area_id: area_id, city: city, address: address, building: building, tel: tel, order_id: order.id)
   end
