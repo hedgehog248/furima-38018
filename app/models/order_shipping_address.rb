@@ -11,7 +11,7 @@ class OrderShippingAddress
     validates :address
     validates :tel, format: {with: /\A\d{10,11}\z/, message: "is invalid. Don't include hyphen(-)"}
   end
-    validates :area_id, numericality: {other_than: 0, message: "can't be blank"}
+  validates :area_id, numericality: {other_than: 1, message: "can't be blank"}
 
   def save
     binding.pry
