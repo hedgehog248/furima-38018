@@ -7,7 +7,7 @@ RSpec.describe OrderShippingAddress, type: :model do
       @order_shipping_address = FactoryBot.build(:order_shipping_address, item_id: item.id, user_id: item.user_id)
       sleep 0.1
     end
-  
+
     context '内容に問題がない場合' do
       it 'すべての値が正しく入力されていれば保存できる' do
         expect(@order_shipping_address).to be_valid
@@ -27,12 +27,12 @@ RSpec.describe OrderShippingAddress, type: :model do
       it 'postal_codeに半角ハイフンが正しい位置になければ保存できない' do
         @order_shipping_address.postal_code = '1234567'
         @order_shipping_address.valid?
-        expect(@order_shipping_address.errors.full_messages).to include "Postal code is invalid. Include hyphen(-)"
+        expect(@order_shipping_address.errors.full_messages).to include 'Postal code is invalid. Include hyphen(-)'
       end
       it 'postal_codeが全角では保存できない' do
         @order_shipping_address.postal_code = '１２３ー４５６７'
         @order_shipping_address.valid?
-        expect(@order_shipping_address.errors.full_messages).to include "Postal code is invalid. Include hyphen(-)"
+        expect(@order_shipping_address.errors.full_messages).to include 'Postal code is invalid. Include hyphen(-)'
       end
       it 'area_idが空だと保存できない' do
         @order_shipping_address.area_id = ''
