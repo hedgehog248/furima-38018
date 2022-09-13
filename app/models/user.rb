@@ -8,19 +8,21 @@ class User < ApplicationRecord
   has_many :oeders
 
   PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i.freeze
-  PASSWORD_MESSAGE = 'には英字と数字の両方を含めて設定してください'.freeze
+  PASSWORD_MESSAGE = 'is invalid. Include both letters and numbers'.freeze
 
   NAME_REGEX = /\A[ぁ-んァ-ヶ一-龥々ー]+\z/.freeze
-  NAME_MESSAGE = 'には全角（漢字・ひらがな・カタカナ）を使用してください'.freeze
+  NAME_MESSAGE = 'is invalid. Input full-width characters'.freeze
 
   NAME_KANA_REGEX = /\A[ァ-ヶー]+\z/.freeze
-  NAME_KANA_MESSAGE = 'には全角カタカナを使用してください'.freeze
+  NAME_KANA_MESSAGE = 'is invalid. Input full-width katakana characters'.freeze
 
   validates :password, format: { with: PASSWORD_REGEX, message: PASSWORD_MESSAGE }
-  validates :nickname, presence: true
-  validates :last_name, presence: true, format: { with: NAME_REGEX, message: NAME_MESSAGE }
-  validates :first_name, presence: true, format: { with: NAME_REGEX, message: NAME_MESSAGE }
-  validates :last_name_kana, presence: true, format: { with: NAME_KANA_REGEX, message: NAME_KANA_MESSAGE }
-  validates :first_name_kana, presence: true, format: { with: NAME_KANA_REGEX, message: NAME_KANA_MESSAGE }
-  validates :birthday, presence: true
+  with_options presence: true do
+    validates :nickname
+    validates :last_name, format: { with: NAME_REGEX, message: NAME_MESSAGE }
+    validates :first_name, format: { with: NAME_REGEX, message: NAME_MESSAGE }
+    validates :last_name_kana, format: { with: NAME_KANA_REGEX, message: NAME_KANA_MESSAGE }
+    validates :first_name_kana, format: { with: NAME_KANA_REGEX, message: NAME_KANA_MESSAGE }
+    validates :birthday
+  end
 end
