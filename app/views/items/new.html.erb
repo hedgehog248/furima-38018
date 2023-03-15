@@ -3,7 +3,7 @@
     <%= link_to image_tag('furima-logo-color.png' , size: '185x50'), "/" %>
 
   </header>
-  <div class="items-sell-main">
+  <div class="items-sell-main" id="new_post">
     <h2 class="items-sell-title">商品の情報を入力</h2>
     <%= form_with model: @item, local: true do |f| %>
 
@@ -15,6 +15,7 @@
         商品画像
         <span class="indispensable">必須</span>
       </div>
+      <div id="previews"></div>
       <div class="click-upload">
         <p>
           クリックしてファイルをアップロード
