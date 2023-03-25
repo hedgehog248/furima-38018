@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const previewList = document.getElementById('previews');
   if (!postForm) return null;
 
-  const fileField = document.querySelector('input[type="file"][name="item[image]"]');
+  const fileField = document.querySelector('input[type="file"][name="item[images][]"]');
   fileField.addEventListener('change', function (e) {
     // 古いプレビューが存在する場合は削除
     const alreadyPreview = document.querySelector('.preview');
@@ -22,5 +22,14 @@ document.addEventListener('DOMContentLoaded', function () {
     // 生成したHTMLの要素をブラウザに表示させる
     previewWrapper.appendChild(previewImage);
     previewList.appendChild(previewWrapper);
+
+    // 2枚目用のfile_fieldを作成
+    const newFileField = document.createElement('input');
+    newFileField.setAttribute('type', 'file');
+    newFileField.setAttribute('name', 'item[images][]');
+
+    // 生成したfile_fieldを表示
+    const fileFieldsArea = document.querySelector('.click-upload');
+    fileFieldsArea.appendChild(newFileField);
   });
 });
