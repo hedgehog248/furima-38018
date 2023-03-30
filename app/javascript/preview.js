@@ -3,6 +3,9 @@ document.addEventListener('DOMContentLoaded', function () {
   const previewList = document.getElementById('previews');
   if (!postForm) return null;
 
+  // 投稿できる枚数の制限を定義
+  const imageLimits = 5;
+
   const buildPreviewImage = (dataIndex, blob) => {
     // 画像を表示するためのdiv要素を生成
     const previewWrapper = document.createElement('div');
@@ -54,6 +57,10 @@ document.addEventListener('DOMContentLoaded', function () {
     deletePreviewImage.remove();
     const deleteFileField = document.querySelector(`input[type="file"][data-index="${dataIndex}"]`);
     deleteFileField.remove();
+
+    // 画像の枚数が最大のときに削除ボタンを押した場合、file_fieldを1つ追加する
+    const imageCount = document.querySelectorAll(".preview").length;
+    if (imageCount == imageLimits - 1) buildNewFileField();
   };
 
   const changedFileField = (e) => {
@@ -81,7 +88,9 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     buildPreviewImage(dataIndex, blob);
-    buildNewFileField();
+    // 画像の枚数制限に引っかからなければ、新しいfile_fieldを追加する
+    const imageCount = document.querySelectorAll(".preview").length;
+    if (imageCount < imageLimits) buildNewFileField();
   };
 
   // input要素を取得
