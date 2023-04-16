@@ -14,6 +14,10 @@ window.addEventListener('load', function () {
   const getChildCategoryData = () => {
     const parentValue = parentCategory.value
     categoryXHR(parentValue)
+
+    XHR.onload = () => {
+      const items = XHR.response.item;
+    }
   }
 
   parentCategory.addEventListener('change', function () {
