@@ -1,5 +1,7 @@
 window.addEventListener('load', function () {
   const parentCategory = document.getElementById('parent-category')
+  const selectWrap = this.document.getElementById('select-wrap')
+
   const selectChildElement = (selectForm) => {
 
   }
@@ -17,7 +19,32 @@ window.addEventListener('load', function () {
 
     XHR.onload = () => {
       const items = XHR.response.item;
+      appendChildSelect(items)
+      const childCategory = document.getElementById('child-select')
+
+      childCategory.addEventListener('change', () => {
+        selectChildElement('grand-child-select-wrap')
+        getGrandChildCategoryData(childCategory)
+      })
     }
+  }
+
+  const appendChildSelect = (items) => {
+    const childWrap = document.createElement('div')
+    const childSelect = document.createElement('select')
+
+    childWrap.setAttribute('id', 'child-select-wrap')
+    childSelect.setAttribute('id', 'child-select')
+
+    items.forEach(item => {
+      const childOption = this.document.createElement('option')
+      childOption.innerHTML = item.name
+      childOption.setAttribute('value', item.id)
+      childSelect.appendChild(childOption)
+    });
+
+    childWrap.appendChild(childSelect)
+    selectWrap.appendChild(childWrap)
   }
 
   parentCategory.addEventListener('change', function () {
