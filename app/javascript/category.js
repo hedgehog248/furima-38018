@@ -37,6 +37,7 @@ window.addEventListener('load', function () {
 
     childWrap.setAttribute('id', 'child-select-wrap')
     childSelect.setAttribute('id', 'child-select')
+    childSelect.setAttribute('class', 'select-box')
 
     items.forEach(item => {
       const childOption = this.document.createElement('option')
@@ -67,6 +68,7 @@ window.addEventListener('load', function () {
 
     grandchildWrap.setAttribute('id', 'grand-child-select-wrap')
     grandchildSelect.setAttribute('id', 'grand-child-select')
+    grandchildSelect.setAttribute('class', 'select-box')
 
     items.forEach(item => {
       const grandchildOption = document.createElement('option')
