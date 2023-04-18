@@ -3,7 +3,9 @@ window.addEventListener('load', function () {
   const selectWrap = this.document.getElementById('select-wrap')
 
   const selectChildElement = (selectForm) => {
-
+    if (document.getElementById(selectForm) !== null) {
+      document.getElementById(selectForm).remove()
+    }
   }
 
   const XHR = new XMLHttpRequest();
@@ -47,11 +49,6 @@ window.addEventListener('load', function () {
     selectWrap.appendChild(childWrap)
   }
 
-  parentCategory.addEventListener('change', function () {
-    selectChildElement('child-select-wrap')
-    getChildCategoryData()
-  })
-
   const getGrandChildCategoryData = (GrandChildCategory) => {
     const GrandChildValue = GrandChildCategory.value
     categoryXHR(GrandChildValue)
@@ -82,4 +79,9 @@ window.addEventListener('load', function () {
     grandchildWrap.appendChild(grandchildSelect)
     childWrap.appendChild(grandchildWrap)
   }
+
+  parentCategory.addEventListener('change', function () {
+    selectChildElement('child-select-wrap')
+    getChildCategoryData()
+  })
 })
