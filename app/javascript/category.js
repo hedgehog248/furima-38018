@@ -51,4 +51,35 @@ window.addEventListener('load', function () {
     selectChildElement('child-select-wrap')
     getChildCategoryData()
   })
+
+  const getGrandChildCategoryData = (GrandChildCategory) => {
+    const GrandChildValue = GrandChildCategory.value
+    categoryXHR(GrandChildValue)
+
+    XHR.onload = () => {
+      const GrandChildItems = XHR.response.item;
+      appendGrandChildSelect(GrandChildItems)
+    }
+  }
+
+  const appendGrandChildSelect = (items) => {
+
+    const childWrap = document.getElementById('child-select-wrap')
+    const grandchildWrap = document.createElement('div')
+    const grandchildSelect = document.createElement('select')
+
+    grandchildWrap.setAttribute('id', 'grand-child-select-wrap')
+    grandchildSelect.setAttribute('id', 'grand-child-select')
+
+    items.forEach(item => {
+      const grandchildOption = document.createElement('option')
+      grandchildOption.innerHTML = item.name
+      grandchildOption.setAttribute('value', item.id)
+
+      grandchildSelect.appendChild(grandchildOption)
+    });
+
+    grandchildWrap.appendChild(grandchildSelect)
+    childWrap.appendChild(grandchildWrap)
+  }
 })
